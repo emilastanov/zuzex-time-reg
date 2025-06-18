@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    image: apaem/zuzex-time-reg:latest
+    container_name: zuzex-time-reg-bot
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - web-network
+    volumes:
+      - ./log:/app/log
+      - ./bot_cache.pkl:/app/bot_cache.pkl
+    environment:
+      - TZ=Europe/Moscow
+
+networks:
+  web-network:
+    external: true

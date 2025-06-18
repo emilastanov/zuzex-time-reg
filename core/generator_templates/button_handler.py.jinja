@@ -1,0 +1,17 @@
+from telegram import Update
+from telegram.ext import ContextTypes
+
+
+async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+
+    await query.answer()
+
+    callback_data = query.data.split(":")[-1].split(";")
+    answer = "Обработчик работает."
+
+    await query.edit_message_text(
+        text=answer,
+        #reply_markup=get_keyboard(),
+        parse_mode="HTML",
+    )

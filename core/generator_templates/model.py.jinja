@@ -1,0 +1,27 @@
+from datetime import datetime
+
+from sqlalchemy import Enum
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.sql import func
+from enum import Enum as EnumBase
+
+from .base import Base, CRUDMixin
+
+class CustomType(EnumBase):
+    type1 = "type1"
+    type2 = "type2"
+    type3 = "type3"
+
+
+class {{ name }}(Base, CRUDMixin):
+    __tablename__ = "{{ table_name }}"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+
+    int_field: Mapped[int] = mapped_column(unique=True, nullable=False)
+    type_field: Mapped[CustomType] = mapped_column(Enum(CustomType, name="custom_type_enum"), nullable=False)
+    str_field: Mapped[str] = mapped_column(nullable=True)
+    bool_field: Mapped[bool] = mapped_column(server_default="1", nullable=False)
+
+    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())

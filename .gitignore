@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Mac OS
+.DS_Store
+
+# Logs
+*.log
+/log
+
+# Python-specific
+*.egg-info/
+dist/
+build/
+
+# dotenv
+.env
+.ssh_key
+
+# Cache
+*.cache
+test.py
+dump.txt
+*.db
+*.pkl

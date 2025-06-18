@@ -1,0 +1,33 @@
+import os
+import re
+from telegram.ext import ContextTypes
+from datetime import datetime
+from telegram import Update
+
+from commands.parse_args import parse_args
+from crud.find_user_by_id import find_user_by_id
+from utils.log_answer import log_answer
+
+
+
+async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat = update.effective_chat
+    message = update.message
+
+    user_data = await find_user_by_id(chat.id)
+
+    #if not user_data.is_admin:
+    #    await message.reply_text("Недостаточно прав")
+    #    return
+
+    #args = parse_args("/{{name}}", message.text)
+    #date_str = args.get("-d") or datetime.now().strftime("%d_%m_%Y")
+
+    answer = "Обработчик работает."
+
+    await message.reply_text(answer)
+    #await message.reply_text(answer,
+    #    reply_markup=get_keyboard(),
+    #    parse_mode="Markdown",
+    #)
+    await log_answer(answer, message)
