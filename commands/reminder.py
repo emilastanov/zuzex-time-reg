@@ -45,7 +45,7 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context=context,
         chat_id=update.effective_chat.id,
         data=REMINDER_TEXTS[rand_index]
-        + "\nИспользуй - /log\n\n Чтобы отменить напоминания - /clear",
+        + "\nИспользуй - /log\n\nЧтобы отменить напоминания - /clear",
     )
 
     answer = SUCCESS if success else ERROR
