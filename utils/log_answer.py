@@ -36,12 +36,13 @@ async def log_answer(answer, message):
     await asyncio.to_thread(write_log)
 
 
-async def sys_log(text):
-    await asyncio.to_thread(sync_sys_log, text)
+async def sys_log(*texts):
+
+    await asyncio.to_thread(sync_sys_log, *texts)
 
 
 def sync_sys_log(*texts):
-    text = "  ".join(texts)
+    text = " ".join(texts)
     print(text)
 
     log_dir = "log"
