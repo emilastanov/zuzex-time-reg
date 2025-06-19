@@ -1,10 +1,11 @@
+from pytz import timezone
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
     CallbackQueryHandler,
     InlineQueryHandler,
     MessageHandler,
-    PicklePersistence,
+    PicklePersistence, Defaults,
 )
 from config import TOKEN, TOKEN_DEV, ENV
 from core.module_loader import load_module
@@ -25,11 +26,14 @@ def get_token():
 def main():
     token = get_token()
     persistence = PicklePersistence(filepath="bot_cache.pkl")
+
+    moscow_tz = timezone("Europe/Moscow")
     app = (
         ApplicationBuilder()
         .token(token)
         .persistence(persistence)
         .post_init(restore_all_reminders)
+        .defaults(Defaults(tzinfo=moscow_tz))
         .build()
     )
 
