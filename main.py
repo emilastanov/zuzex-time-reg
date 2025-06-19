@@ -33,7 +33,7 @@ def main():
         .build()
     )
 
-    # app.add_error_handler(error_handler)
+    app.add_error_handler(error_handler)
 
     load_module(app, "commands", CommandHandler, named=True)
     load_module(app, "button_handlers", CallbackQueryHandler, pattern=True)

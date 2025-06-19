@@ -41,7 +41,7 @@ async def sys_log(text):
 
 
 def sync_sys_log(*texts):
-    text = " ".join(texts)
+    text = "  ".join(texts)
     print(text)
 
     log_dir = "log"
