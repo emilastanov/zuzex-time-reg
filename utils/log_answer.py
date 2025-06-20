@@ -3,7 +3,7 @@ from datetime import datetime
 import asyncio
 
 
-async def log_answer(answer, message):
+async def log_answer(answer, message, mask=False):
     """
     Асинхронно сохраняет сообщение и ответ в лог-файл по дате (не блокирует event loop).
     """
@@ -26,7 +26,7 @@ async def log_answer(answer, message):
             f"User ID: {user.id}\n"
             f"Name: {user.full_name}\n"
             f"Username: @{user.username if user.username else 'N/A'}\n"
-            f"Message: {message.text or '[non-text content]'}\n"
+            f"Message: {message.text if message.text and not mask else '[non-text content]'}\n"
             f"Answer:\n{answer}\n"
         )
 

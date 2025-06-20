@@ -52,5 +52,5 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         answer = LOG_EXISTS
 
     await message.reply_text(answer, "HTML")
-    await log_answer(answer, message)
+    await log_answer(answer, message, mask=True)
     return

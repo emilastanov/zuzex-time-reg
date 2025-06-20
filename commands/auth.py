@@ -31,7 +31,7 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         answer = ADD_PROFILE
 
         await message.reply_text(answer, parse_mode="HTML")
-        await log_answer(answer, message)
+        await log_answer(answer, message, mask=True)
         return
 
     try:
@@ -40,7 +40,7 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except:
         answer = BAD_CREDS
         await message.reply_text(answer, parse_mode="Markdown")
-        await log_answer(answer, message)
+        await log_answer(answer, message, mask=True)
         return
 
     try:
@@ -48,7 +48,7 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except:
         answer = BAD_TASK.format(task_key=task_key)
         await message.reply_text(answer, parse_mode="Markdown")
-        await log_answer(answer, message)
+        await log_answer(answer, message, mask=True)
         return
 
     salt = Crypt.gen_salt()
@@ -67,4 +67,4 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     answer = DONE
 
     await message.reply_text(answer, parse_mode="Markdown")
-    # await log_answer(answer, message)
+    await log_answer(answer, message, mask=True)

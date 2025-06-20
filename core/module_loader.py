@@ -25,7 +25,6 @@ def load_module(app, module_dir, func, named=False, pattern=None, filters=False)
             )
             continue
 
-        args = []
         if named:
             app.add_handler(func(command_name, handler_func))
         elif pattern:
