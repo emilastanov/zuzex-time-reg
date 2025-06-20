@@ -58,7 +58,8 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     encrypted_headers = crypt.encrypt(json.dumps(headers))
 
     exist_profile = await ZuzexProfile.find_one(user_id=user_data.id)
-    await ZuzexProfile.delete(id=exist_profile.id)
+    if exist_profile:
+        await ZuzexProfile.delete(id=exist_profile.id)
 
     await ZuzexProfile.create(
         hashed_auth_key=encrypted_headers, task_key=task_key, user_id=user_data.id
@@ -66,4 +67,4 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     answer = DONE
 
     await message.reply_text(answer, parse_mode="Markdown")
-    await log_answer(answer, message)
+    # await log_answer(answer, message)
